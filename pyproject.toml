@@ -1,0 +1,47 @@
+[project]
+name = "my-trading-agent"
+version = "0.1.0"
+requires-python = ">=3.11"
+description = "AI-powered Wyckoff trading agent for stock analysis and screening"
+readme = "README.md"
+license = "AGPL-3.0-only"
+authors = [{name = "rjbishnoi"}]
+keywords = ["trading", "agent", "wyckoff", "stock", "ai"]
+
+dependencies = [
+    "pandas>=2.2.0,<3.0",
+    "google-genai>=0.6.0",
+    "anthropic>=0.30.0",
+    "openai>=1.30.0",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "rich>=13.0.0",
+    "prompt-toolkit>=3.0.0",
+    "textual>=0.50.0",
+    "sqlalchemy>=2.0.0",
+    "tavily-python>=0.3.0",
+    "pyyaml>=6.0",
+    "tenacity>=8.2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff>=0.4.0", "black>=23.0", "mypy>=1.0"]
+mcp = ["mcp>=1.0.0"]
+
+[project.scripts]
+trading-agent = "cli.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["agents*", "cli*", "core*", "integrations*", "tools*", "utils*"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501", "E402", "E741"]
